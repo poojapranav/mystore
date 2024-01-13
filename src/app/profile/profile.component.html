@@ -1,0 +1,65 @@
+<!-- <h3>welcome,{{name}}</h3>
+<p *ngIf="age>0 && age<=18 then minor"></p>
+<p *ngIf="age>18 && age<=60 then adult"></p>
+<p *ngIf="age>60 then seniour"></p>
+<ng-template #minor>you are minor</ng-template>
+<ng-template #adult>you are adult`</ng-template>
+<ng-template #seniour>you are seniour</ng-template>
+
+<div [ngSwitch]="day">
+    <p *ngSwitchCase="1">Monday</p>
+    <p *ngSwitchCase="2">Tuesday</p>
+    <p *ngSwitchCase="3">Wednesday</p>
+    <p *ngSwitchCase="4">Thursday</p>
+    <p *ngSwitchCase="5">Friday</p>
+    <p *ngSwitchCase="6">saturday</p>
+    <p *ngSwitchCase="7">Sunday</p>
+    <p *ngSwitchDefault>something went wrong</p>
+</div>
+
+<input type="text" [formControl]="author"> -->
+<!-- {{author.value}} -->
+<!-- {{author|json}} -->
+<form [formGroup]="profileform" (ngSubmit)="submitprofile()">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" formControlName="name">
+    </div> 
+    <div class="alert alert-danger"
+        *ngIf="namectrl.dirty && namectrl.invalid && namectrl.hasError('required')"
+    >
+        name not provided
+    </div>
+    <div class="alert alert-danger"
+    *ngIf="namectrl.dirty && namectrl.invalid && namectrl.hasError('minlength')"
+    >
+        name should have 3 characters
+    </div>
+    <div class="alert alert-danger"
+        *ngIf="namectrl.dirty && namectrl.invalid && 
+             namectrl.hasError('forbidden')"
+    >
+        BOB name not allowed
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email">
+    </div>
+    <div class="alert alert-danger"
+        *ngIf="emailctrl.dirty && emailctrl.invalid && emailctrl.hasError('required')"
+    >
+        email not provided
+    </div>
+    <div class="alert alert-danger"
+        *ngIf="emailctrl.dirty && emailctrl.invalid && emailctrl.hasError('email')"
+    >
+        email is not well formed
+
+    </div>
+    <div class="mb-3">
+        <label for="mobile" class="form-label">Mobile</label>
+        <input type="text" class="form-control" formControlName="mobile">
+    </div>
+    <button type="submit" class="btn btn-primary">submit</button>
+</form>
+{{profileform.value|json}}
